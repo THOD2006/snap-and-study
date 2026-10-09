@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6558e8">
+  <title>Snap & Study — Smart Learning Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-icon">✦</span><span>Snap<span class="brand-light"> & Study</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#workspace"><span>▦</span> My workspace</a>
+      <a class="nav-item" href="#results"><span>▤</span> Study materials</a>
+      <div class="sidebar-bottom">
+        <div class="tip-icon">✧</div>
+        <strong>Small steps, big progress.</strong>
+        <p>Turn your notes into a smarter study session.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand">✦ Snap & Study</div>
+        <div class="breadcrumb">Workspace <span>/</span> <b>New study session</b></div>
+        <div class="avatar" aria-label="Student profile">S</div>
+      </header>
+
+      <section class="welcome" id="workspace">
+        <div>
+          <div class="eyebrow"><span class="sparkle">✦</span> YOUR PERSONAL STUDY SPACE</div>
+          <h1>Learn smarter, <span>not harder.</span></h1>
+          <p>Upload a page of notes and turn it into something you can learn from.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="book">📚</div><div class="art-star star-one">✦</div><div class="art-star star-two">✧</div>
+        </div>
+      </section>
+
+      <section class="upload-card">
+        <div class="section-heading">
+          <div><span class="step-tag">01</span><h2>Bring your notes</h2></div>
+          <span class="supported">PNG, JPG, WEBP · Max 10 MB</span>
+        </div>
+        <form id="uploadForm">
+          <label class="drop-zone" id="dropZone" for="imageInput">
+            <div class="upload-icon">↑</div>
+            <strong id="uploadTitle">Drop your page here, or <span>browse files</span></strong>
+            <p id="uploadSubtitle">Choose a clear photo of a textbook page or your notes.</p>
+            <input id="imageInput" name="image" type="file" accept="image/png,image/jpeg,image/webp,image/bmp,image/tiff" required>
+            <img id="imagePreview" alt="Selected image preview" hidden>
+          </label>
+          <div class="form-actions">
+            <span class="privacy-note"><span>🔒</span> Your image is processed by this app.</span>
+            <button class="primary-btn" id="processBtn" type="submit">Extract & study <span>→</span></button>
+          </div>
+        </form>
+        <div class="error-box" id="errorBox" role="alert" hidden></div>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="results-title">
+          <div><div class="eyebrow">YOUR LEARNING KIT</div><h2>Study materials</h2></div>
+          <span class="status-pill" id="statusPill"><i></i> Waiting for a page</span>
+        </div>
+        <div class="result-grid">
+          <article class="result-card summary-card">
+            <div class="card-top"><div class="result-icon purple">✧</div><span class="card-kicker">QUICK REVIEW</span></div>
+            <h3>Smart summary</h3>
+            <p class="placeholder" id="summaryText">Your short summary will appear here after you upload a page.</p>
+            <button class="text-btn" id="copySummary" type="button" disabled>Copy summary ↗</button>
+          </article>
+          <article class="result-card quiz-card">
+            <div class="card-top"><div class="result-icon orange">?</div><span class="card-kicker">TEST YOURSELF</span></div>
+            <h3>Practice quiz</h3>
+            <p class="placeholder" id="quizIntro">Turn key facts into fill-in-the-blank practice questions.</p>
+            <div id="quizList" class="quiz-list"></div>
+          </article>
+        </div>
+
+        <article class="result-card extracted-card">
+          <div class="extracted-heading"><div><div class="card-kicker">OCR OUTPUT</div><h3>Extracted text</h3></div><button class="outline-btn" id="copyText" type="button" disabled>Copy text</button></div>
+          <textarea id="extractedText" placeholder="Text detected from your image will appear here…" spellcheck="false"></textarea>
+          <p class="small-note">OCR accuracy depends on image quality, handwriting, lighting, and page orientation.</p>
+        </article>
+      </section>
+      <footer>Made for curious minds <span>✦</span> Snap & Study</footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
